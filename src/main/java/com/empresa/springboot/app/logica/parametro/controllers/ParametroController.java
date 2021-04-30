@@ -54,7 +54,7 @@ public class ParametroController {
 		modelo.put("parametro", parametro);
 		return "parametro/form";
 	}
-	
+	//FIXME NO SE PRESENTA EL MENSAJE DE VALIDACION PERSONALIZADO EN MESSAGES.PROPERTIES. REVISAR POR QUE NO SE PRESENTA
 	@RequestMapping(value = "/parametro/form", method = RequestMethod.POST)
 	public String guardar(@Valid @ModelAttribute("parametro") ParametroEntity parametro, BindingResult result, Model modelo) {
 		if (result.hasErrors()) {
