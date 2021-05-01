@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -54,7 +55,15 @@ public class ParametroController {
 		modelo.put("parametro", parametro);
 		return "parametro/form";
 	}
-	//FIXME NO SE PRESENTA EL MENSAJE DE VALIDACION PERSONALIZADO EN MESSAGES.PROPERTIES. REVISAR POR QUE NO SE PRESENTA
+	
+	@RequestMapping(value = "/parametro/form/{id}", method = RequestMethod.GET)
+	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> modelo) {
+		ParametroEntity parametro = parametroDaoI.obtenerPorId(id);
+		modelo.put("titulo", "Editar parámetro");
+		modelo.put("parametro", parametro);
+		return "parametro/form"; 
+	}
+	
 	@RequestMapping(value = "/parametro/form", method = RequestMethod.POST)
 	public String guardar(@Valid @ModelAttribute("parametro") ParametroEntity parametro, BindingResult result, Model modelo) {
 		if (result.hasErrors()) {

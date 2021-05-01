@@ -16,4 +16,6 @@ public interface ParametroDaoI {
 	public List<ParametroEntity> obtenerTodos();
 	
 	public void guardar(ParametroEntity parametro);
+	
+	public ParametroEntity obtenerPorId(Long id);
 }

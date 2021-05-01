@@ -36,4 +36,9 @@ public class ParametroDaoImp implements ParametroDaoI {
 		em.persist(parametro);
 	}
 
+	@Override
+	public ParametroEntity obtenerPorId(Long id) {
+		return em.find(ParametroEntity.class, id);
+	}
+
 }
