@@ -44,7 +44,8 @@
 						<th>Valor Cadena</th>
 						<th>Descripcion</th>
 						<th>Estado</th>
-						<th>Editar</th>
+						<th>editar</th>
+						<th>eliminar</th>
 					<tr>
 				</thead>
 				<tbody>
@@ -55,6 +56,7 @@
 						<td th:text=${parametro.descripcion}></td>
 						<td th:text=${parametro.estado}></td>
 						<td><a class="btn btn-primary btn-xs" th:href="@{/parametro/form/} + ${parametro.id}" th:text="'editar'"></a></td>
+						<td><a class="btn btn-danger btn-xs" th:href="@{/parametro/eliminar/} + ${parametro.id}" th:text="'eliminar'" onclick="return confirm('Estás seguro de eliminar?')"></a></td>
 					</tr>
 				</tbody>
 			</table>

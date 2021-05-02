@@ -1,19 +1,19 @@
 /**
  * Copyright 2021, derecho de autor: Dennys Javier Lara Uquillas
  */
-package com.empresa.springboot.app.persistencia.parametro.dao;
+package com.empresa.springboot.app.logica.services;
 
 import java.util.List;
 
 import com.empresa.springboot.app.persistencia.parametro.entity.ParametroEntity;
 
 /**
- * @author Dennys Lara
- * Interfaz para el acceso de datos a la tabla parametros
+ * @author dennys lara
+ *
  */
-public interface ParametroDaoI {
+public interface ParametroLogicaI {
 
-	public List<ParametroEntity> obtenerTodos();
+public List<ParametroEntity> obtenerTodos();
 	
 	public ParametroEntity obtenerPorId(Long id);
 	
