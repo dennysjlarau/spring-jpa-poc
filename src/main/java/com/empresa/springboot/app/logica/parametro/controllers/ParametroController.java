@@ -82,11 +82,7 @@ public class ParametroController {
 	    return "parametro/form";
 	}
 
-	if (parametro.getId() == null || parametro.getId() == 0) {
-	    parametroLogica.ingresar(parametro);
-	} else {
-	    parametroLogica.actualizar(parametro);
-	}
+	parametroLogica.guardar(parametro);
 
 	status.setComplete(); // terminar la sesion como mejor practica
 	return "redirect:/parametro";

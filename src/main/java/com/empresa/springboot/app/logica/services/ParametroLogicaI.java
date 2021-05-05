@@ -13,13 +13,11 @@ import com.empresa.springboot.app.persistencia.parametro.entity.ParametroEntity;
  */
 public interface ParametroLogicaI {
 
-public List<ParametroEntity> obtenerTodos();
-	
-	public ParametroEntity obtenerPorId(Long id);
-	
-	public void ingresar(ParametroEntity parametro);
-	
-	public void actualizar(ParametroEntity parametro);
-	
-	public void eliminar(Long id);
+    public List<ParametroEntity> obtenerTodos();
+
+    public ParametroEntity obtenerPorId(Long id);
+
+    public void guardar(ParametroEntity parametro);
+
+    public void eliminar(Long id);
 }
