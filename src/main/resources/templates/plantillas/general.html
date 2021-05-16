@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Dennys Lara">
+	
+	<title th:text="${titulo}"></title>
+	<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+	
+	<style type="text/css">
+	 	html {
+		  min-height: 100%;
+		  position: relative;
+		}
+		body {
+		  margin: 0;
+		  margin-bottom: 40px;
+		}
+		footer {
+		  background-color: black;
+		  position: absolute;
+		  bottom: 0;
+		  width: 100%;
+		  height: 40px;
+		  color: white;
+		}
+	 </style>
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Spring boot</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">Home</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/parametro}">Parámetros</a></li>
+
+
+					</ul>
+					<form class="d-flex">
+						<input class="form-control me-2" type="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="alert alert-success" th:text="${success}" th:if="${success != null}"></div>
+		<div class="alert alert-danger" th:text="${error}" th:if="${error != null}"></div>
+		<div class="alert alert-warning" th:text="${warning}" th:if="${warning != null}"></div>
+		<div class="alert alert-info" th:text="${info}" th:if="${info != null}"></div>
+	</header>
+
+	<footer class="footer mt-auto py-3 bg-light">
+		
+	
+	  
+	
+	  <!-- Call to action -->
+	  <ul class="list-unstyled list-inline text-center py-2">
+	    <li class="list-inline-item">
+	      <h5 class="mb-1">Regístratre gratis para notificar promociones</h5>
+	    </li>
+	    <li class="list-inline-item">
+	      <a href="#!" class="btn btn-danger btn-rounded">Registrar Aquí!</a>
+	    </li>
+	  </ul>
+	  <!-- Call to action -->
+	
+	  <hr>
+	
+	  <!-- Social buttons -->
+	  <ul class="list-unstyled list-inline text-center">
+	    <li class="list-inline-item">
+	      <a class="btn-floating btn-fb mx-1">
+	        <i class="fab fa-facebook"> </i>
+	      </a>
+	    </li>
+	    <li class="list-inline-item">
+	      <a class="btn-floating btn-tw mx-1">
+	        <i class="fab fa-twitter"> </i>
+	      </a>
+	    </li>
+	    <li class="list-inline-item">
+	      <a class="btn-floating btn-gplus mx-1">
+	        <i class="fab fa-google-plus-g"> </i>
+	      </a>
+	    </li>
+	    <li class="list-inline-item">
+	      <a class="btn-floating btn-li mx-1">
+	        <i class="fab fa-linkedin-in"> </i>
+	      </a>
+	    </li>
+	    <li class="list-inline-item">
+	      <a class="btn-floating btn-dribbble mx-1">
+	        <i class="fab fa-dribbble"> </i>
+	      </a>
+	    </li>
+	  </ul>
+	  <!-- Social buttons -->
+	
+	  <!-- Copyright -->
+	  <div class="container">
+	  	<span class="text-muted text-center">© 2020 Copyright: <a href="https://www.linkedin.com/in/dennysjlarau"> Dennys Lara</a> </span>
+	  </div>
+	  <!-- Copyright -->
+	
+	</footer>
+	
+	<script th:src="@{/jquery/jquery-3.6.0.min.js}"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>	
+	
+</body>
+</html>

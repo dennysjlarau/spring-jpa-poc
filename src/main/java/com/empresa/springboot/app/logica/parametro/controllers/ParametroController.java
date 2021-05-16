@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.springboot.app.logica.services.ParametroLogicaI;
 import com.empresa.springboot.app.persistencia.parametro.entity.ParametroEntity;
@@ -63,12 +64,17 @@ public class ParametroController {
     }
 
     @RequestMapping(value = "/parametro/form/{id}", method = RequestMethod.GET)
-    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> modelo) {
+    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> modelo, RedirectAttributes flash) {
 	ParametroEntity parametro = null;
 	if (id > 0) {
 	    parametro = parametroLogica.obtenerPorId(id);
+	    if (parametro == null) {
+		flash.addFlashAttribute("error", "El parámetro no existe en la Base de datos");
+		return "redirect:/parametro";
+	    }
 	} else {
-	    return "parametro/listarTodos";
+	    flash.addFlashAttribute("error", "El identificador del parámetro no puede ser cero");
+	    return "redirect:/parametro";
 	}
 	modelo.put("titulo", "Editar parámetro");
 	modelo.put("parametro", parametro);
@@ -76,23 +82,29 @@ public class ParametroController {
     }
 
     @RequestMapping(value = "/parametro/form", method = RequestMethod.POST)
-    public String guardar(@Valid @ModelAttribute("parametro") ParametroEntity parametro, BindingResult result, Model modelo, SessionStatus status) {
+    public String guardar(@Valid @ModelAttribute("parametro") ParametroEntity parametro, BindingResult result, Model modelo, RedirectAttributes flash, SessionStatus status) {
+	String mensaje = null;
 	if (result.hasErrors()) {
 	    modelo.addAttribute("titulo", "Registrar nuevo del parámetro");
 	    return "parametro/form";
 	}
-
+	if (parametro.getId() == null) {
+	    mensaje = "Parámetro creado con éxito";
+	} else {
+	    mensaje = "Parámetro modificado con éxito";
+	}
 	parametroLogica.guardar(parametro);
-
 	status.setComplete(); // terminar la sesion como mejor practica
+	flash.addFlashAttribute("success", mensaje);
 	return "redirect:/parametro";
     }
 
     @RequestMapping(value = "/parametro/eliminar/{id}", method = RequestMethod.GET)
-    public String eliminar(@PathVariable(value = "id") Long id) {
+    public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 	if (id > 0) {
 	    parametroLogica.eliminar(id);
 	}
+	flash.addFlashAttribute("success", "Parámetro eliminado con éxito");
 	return "redirect:/parametro";
     }
 }
